@@ -1,5 +1,7 @@
 #!/bin/bash
 
+IMAGENAME=theden/linux-games
+
 getip() {
   localIP=$(ipconfig getifaddr en0)
 
@@ -22,7 +24,7 @@ getip() {
 }
 
 startcontainer() {
-  docker run --hostname linux-games --user ubuntu -it -e DISPLAY=$localIP:0 -e XAUTHORITY=~/.Xauthority -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/.Xauthority:/.Xauthority gnome-games $1
+  docker run --hostname linux-games --user ubuntu -it -e DISPLAY=$localIP:0 -e XAUTHORITY=~/.Xauthority -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/.Xauthority:/.Xauthority $IMAGENAME $1
 }
 
 getip
